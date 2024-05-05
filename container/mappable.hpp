@@ -181,16 +181,16 @@ public:
   /* ************************************************************************ */
 
   // Copy assignment
-  virtual InOrderMappableContainer& operator=(const InOrderMappableContainer&)=0; // Copy assignment of abstract types is not possible.
+  virtual InOrderMappableContainer& operator=(const InOrderMappableContainer&)=delete; // Copy assignment of abstract types is not possible.
 
       // Move assignment
-  virtual InOrderMappableContainer& operator=(InOrderMappableContainer&&)=0; // Move assignment of abstract types is not possible.
+  virtual InOrderMappableContainer& operator=(InOrderMappableContainer&&)=delete; // Move assignment of abstract types is not possible.
 
       /* ************************************************************************ */
 
       // Comparison operators
-  virtual bool operator==(const InOrderMappableContainer&) const noexcept=0; // Comparison of abstract types is not possible.
-  virtual bool operator!=(const InOrderMappableContainer&) const noexcept=0;  // Comparison of abstract types is not possible.
+  virtual bool operator==(const InOrderMappableContainer&) const noexcept=delete; // Comparison of abstract types is not possible.
+  virtual bool operator!=(const InOrderMappableContainer&) const noexcept=delete;  // Comparison of abstract types is not possible.
 
   /* ************************************************************************ */
 
@@ -231,16 +231,16 @@ public:
   /* ************************************************************************ */
 
   // Copy assignment
-  virtual BreadthMappableContainer& operator=(const BreadthMappableContainer&)=0; // Copy assignment of abstract types is not possible.
+  virtual BreadthMappableContainer& operator=(const BreadthMappableContainer&)=delete; // Copy assignment of abstract types is not possible.
 
       // Move assignment
-  virtual BreadthMappableContainer& operator=(BreadthMappableContainer&&)=0; // Move assignment of abstract types is not possible.
+  virtual BreadthMappableContainer& operator=(BreadthMappableContainer&&)=delete; // Move assignment of abstract types is not possible.
 
       /* ************************************************************************ */
 
       // Comparison operators
-  virtual bool operator==(const BreadthMappableContainer&) const noexcept=0; // Comparison of abstract types is not possible.
-  virtual bool operator!=(const BreadthMappableContainer&) const noexcept=0;  // Comparison of abstract types is not possible.
+  virtual bool operator==(const BreadthMappableContainer&) const noexcept=delete; // Comparison of abstract types is not possible.
+  virtual bool operator!=(const BreadthMappableContainer&) const noexcept=delete;  // Comparison of abstract types is not possible.
 
   /* ************************************************************************ */
 

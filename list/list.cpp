@@ -19,7 +19,7 @@
 
     //destructor
     template <typename Data>
-   List<Data>::Node::~Node(){
+    List<Data>::Node::~Node(){
         delete this->next;
     }
 

@@ -41,51 +41,51 @@ protected:
 public:
   using Container::Size;
   using Container::Empty;
+
   struct Node {
-    
+  
+    protected:
 
-  protected:
+      // Comparison operators
+      bool operator==(const Node&) const noexcept; // Comparison of abstract types is possible, but is not visible.
+      bool operator!=(const Node&) const noexcept; // Comparison of abstract types is possible, but is not visible.
 
-    // Comparison operators
-    bool operator==(const Node&) const noexcept; // Comparison of abstract types is possible, but is not visible.
-    bool operator!=(const Node&) const noexcept; // Comparison of abstract types is possible, but is not visible.
+    public:
 
-  public:
+      friend class BinaryTree<Data>;
 
-    friend class BinaryTree<Data>;
+      /* ********************************************************************** */
 
-    /* ********************************************************************** */
+      // Destructor
+      virtual ~Node()=default;
 
-    // Destructor
-    ~Node()=default;
+      /* ********************************************************************** */
 
-    /* ********************************************************************** */
+      // Copy assignment
+      Node& operator=(const Node&)=delete; // Copy assignment of abstract types is not possible.
 
-    // Copy assignment
-    Node& operator=(const Node&)=delete; // Copy assignment of abstract types is not possible.
+      // Move assignment
+      Node& operator=(Node&&)=delete; // Move assignment of abstract types is not possible.
 
-    // Move assignment
-    Node& operator=(Node&&)=delete; // Move assignment of abstract types is not possible.
+      /* ********************************************************************** */
 
-    /* ********************************************************************** */
+      // Specific member functions
 
-    // Specific member functions
+      virtual const Data& Element() const noexcept=0; // Immutable access to the element (concrete function should not throw exceptions)
 
-    virtual const Data& Element() const noexcept=0; // Immutable access to the element (concrete function should not throw exceptions)
+      virtual bool IsLeaf() const noexcept; // (concrete function should not throw exceptions)
+      virtual bool HasLeftChild() const noexcept=0; // (concrete function should not throw exceptions)
+      virtual bool HasRightChild() const noexcept=0; // (concrete function should not throw exceptions)
 
-    virtual bool IsLeaf() const noexcept; // (concrete function should not throw exceptions)
-    virtual bool HasLeftChild() const noexcept=0; // (concrete function should not throw exceptions)
-    virtual bool HasRightChild() const noexcept=0; // (concrete function should not throw exceptions)
+      virtual const Node& LeftChild() const=0; // (concrete function must throw std::out_of_range when not existent)
+      virtual const Node& RightChild() const=0; // (concrete function must throw std::out_of_range when not existent)
 
-    virtual const Node& LeftChild() const=0; // (concrete function must throw std::out_of_range when not existent)
-    virtual const Node& RightChild() const=0; // (concrete function must throw std::out_of_range when not existent)
-
-  };
+    };
 
   /* ************************************************************************ */
 
   // Destructor
-  ~BinaryTree();
+  virtual ~BinaryTree()=default;
 
   /* ************************************************************************ */
 
@@ -105,7 +105,7 @@ public:
 
   // Specific member functions
 
-  const Node& Root() const=0; // (concrete function must throw std::length_error when empty)
+  virtual const Node& Root() const=0; // (concrete function must throw std::length_error when empty)
 
   /* ************************************************************************ */
 
@@ -142,9 +142,11 @@ public:
 protected:
 
   // Auxiliary functions, if necessary!
-  void PreOrderTraverse(TraverseFun,const Node*) const;
-  void InOrderTraverse(TraverseFun,const Node*) const;
-  void PostOrderTraverse(TraverseFun,const Node*) const;
+  bool logicEqual(const Node&,const Node&) noexcept;
+
+  void PreOrderTraverse(TraverseFun,const Node&) const;
+  void InOrderTraverse(TraverseFun,const Node&) const;
+  void PostOrderTraverse(TraverseFun,const Node&) const;
   void BreadthTraverse(TraverseFun,const Node*) const;
 
 };
@@ -183,7 +185,7 @@ public:
     /* ********************************************************************** */
 
     // Destructor
-    ~MutableNode()=default;
+    virtual ~MutableNode()=default;
 
     /* ********************************************************************** */
 
@@ -207,7 +209,7 @@ public:
   /* ************************************************************************ */
 
   // Destructor
-  ~MutableBinaryTree();
+  virtual ~MutableBinaryTree()=default;
 
   /* ************************************************************************ */
 
@@ -259,11 +261,12 @@ protected:
 
   // Auxiliary functions, if necessary!
   
-  
-  void PreOrderMap(MapFun,const Node* node);
-  void InOrderMap(MapFun,const Node* node);
-  void PostOrderMap(MapFun,const Node* node);
-  void BreadthMap(MapFun,const Node* node);
+ 
+
+  void PreOrderMap(MapFun, MutableNode& node);
+  void InOrderMap(MapFun, MutableNode& node);
+  void PostOrderMap(MapFun, MutableNode& node);
+  void BreadthMap(MapFun, MutableNode* node);
 
 };
 

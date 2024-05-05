@@ -204,16 +204,16 @@ public:
   /* ************************************************************************ */
 
   // Copy assignment
-  virtual InOrderTraversableContainer& operator=(const InOrderTraversableContainer&)=0; // Copy assignment of abstract types is not possible.
+  virtual InOrderTraversableContainer& operator=(const InOrderTraversableContainer&)=delete; // Copy assignment of abstract types is not possible.
 
       // Move assignment
-  virtual InOrderTraversableContainer& operator=(InOrderTraversableContainer&&)=0; // Move assignment of abstract types is not possible.
+  virtual InOrderTraversableContainer& operator=(InOrderTraversableContainer&&)=delete; // Move assignment of abstract types is not possible.
 
   /* ************************************************************************ */
 
   // Comparison operators
-  virtual bool operator==(const InOrderTraversableContainer<Data>&) const noexcept=0; // Comparison of abstract types might be possible.
-  virtual bool operator!=(const InOrderTraversableContainer<Data>&) const noexcept=0; // Comparison of abstract types might be possible.
+  virtual bool operator==(const InOrderTraversableContainer<Data>&) const noexcept=delete; // Comparison of abstract types might be possible.
+  virtual bool operator!=(const InOrderTraversableContainer<Data>&) const noexcept=delete; // Comparison of abstract types might be possible.
 
   /* ************************************************************************ */
 
@@ -258,16 +258,16 @@ public:
   /* ************************************************************************ */
 
   // Copy assignment
-  virtual BreadthTraversableContainer& operator=(const BreadthTraversableContainer&)=0; // Copy assignment of abstract types is not possible.
+  virtual BreadthTraversableContainer& operator=(const BreadthTraversableContainer&)=delete; // Copy assignment of abstract types is not possible.
 
       // Move assignment
-  virtual BreadthTraversableContainer& operator=(BreadthTraversableContainer&&)=0; // Move assignment of abstract types is not possible.
+  virtual BreadthTraversableContainer& operator=(BreadthTraversableContainer&&)=delete; // Move assignment of abstract types is not possible.
 
   /* ************************************************************************ */
 
   // Comparison operators
-  virtual bool operator==(const BreadthTraversableContainer<Data>&) const noexcept=0; // Comparison of abstract types might be possible.
-  virtual bool operator!=(const BreadthTraversableContainer<Data>&) const noexcept=0; // Comparison of abstract types might be possible.
+  virtual bool operator==(const BreadthTraversableContainer<Data>&) const noexcept=delete; // Comparison of abstract types might be possible.
+  virtual bool operator!=(const BreadthTraversableContainer<Data>&) const noexcept=delete; // Comparison of abstract types might be possible.
 
   /* ************************************************************************ */
 

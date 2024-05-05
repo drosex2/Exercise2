@@ -13,20 +13,22 @@ namespace lasd {
 /* ************************************************************************** */
 
 template <typename Data>
-class BinaryTreeLnk {
+class BinaryTreeLnk :virtual public MutableBinaryTree<Data> {
   // Must extend MutableBinaryTree<Data>
 
 private:
 
   // ...
-
+public:
+  using typename BinaryTree<Data>::Node;
+  using typename MutableBinaryTree<Data>::MutableNode;
 protected:
-
-  // using BinaryTree<Data>::???;
+  using Container::size;
+ 
 
   // ...
 
-  struct NodeLnk { // Must extend MutableNode
+  struct NodeLnk : virtual public MutableBinaryTree<Data>::MutableNode{ // Must extend MutableNode
 
   private:
 
@@ -34,69 +36,92 @@ protected:
 
   protected:
 
-    // ...
+    friend class BinaryTreeLnk<Data>;
+    Data element;
+    NodeLnk* left=nullptr;
+    NodeLnk* right=nullptr;
+
+    NodeLnk(const Data& data) : element(data){};
+    NodeLnk(Data&&) noexcept;
 
   public:
+    NodeLnk()=default;
+    ~NodeLnk();
 
+    virtual Data& Element() noexcept;
+    virtual const Data& Element() const noexcept;
+
+    virtual bool HasLeftChild() const noexcept override;
+    virtual bool HasRightChild() const noexcept override;
+
+    virtual const NodeLnk& LeftChild() const override;
+    virtual const NodeLnk& RightChild() const override;
+
+    virtual NodeLnk& LeftChild() override;
+    virtual NodeLnk& RightChild() override;
     // ...
 
   };
 
+  NodeLnk *root=nullptr;
 public:
 
   // Default constructor
-  // BinaryTreeLnk() specifiers;
+  BinaryTreeLnk()=default;
 
   /* ************************************************************************ */
 
   // Specific constructors
-  // BinaryTreeLnk(argument) specifiers; // A binary tree obtained from a TraversableContainer
-  // BinaryTreeLnk(argument) specifiers; // A binary tree obtained from a MappableContainer
+  BinaryTreeLnk(const TraversableContainer<Data>&) ; // A binary tree obtained from a TraversableContainer
+  BinaryTreeLnk(MappableContainer<Data>&&); // A binary tree obtained from a MappableContainer
 
   /* ************************************************************************ */
 
   // Copy constructor
-  // BinaryTreeLnk(argument) specifiers;
+  BinaryTreeLnk(const BinaryTreeLnk &);
 
   // Move constructor
-  // BinaryTreeLnk(argument) specifiers;
+  BinaryTreeLnk(BinaryTreeLnk&&) noexcept;
 
   /* ************************************************************************ */
 
   // Destructor
-  // ~BinaryTreeLnk() specifiers;
+  ~BinaryTreeLnk();
 
   /* ************************************************************************ */
 
   // Copy assignment
-  // type operator=(argument) specifiers;
+  BinaryTreeLnk& operator=(const BinaryTreeLnk&);
 
   // Move assignment
-  // type operator=(argument) specifiers;
+  BinaryTreeLnk& operator=(BinaryTreeLnk&&) noexcept;
 
   /* ************************************************************************ */
 
   // Comparison operators
-  // type operator==(argument) specifiers;
-  // type operator!=(argument) specifiers;
+  bool operator==(const BinaryTreeLnk&) const noexcept;
+  bool operator!=(const BinaryTreeLnk&) const noexcept;
 
   /* ************************************************************************ */
 
   // Specific member functions (inherited from BinaryTree)
 
-  // type Root() specifiers; // Override BinaryTree member (throw std::length_error when empty)
+  virtual const NodeLnk & Root() const override; // Override BinaryTree member (throw std::length_error when empty)
 
   /* ************************************************************************ */
 
   // Specific member function (inherited from MutableBinaryTree)
 
-  // type Root() specifiers; // Override MutableBinaryTree member (throw std::length_error when empty)
+  virtual NodeLnk & Root() override; // Override MutableBinaryTree member (throw std::length_error when empty)
 
   /* ************************************************************************ */
 
   // Specific member function (inherited from ClearableContainer)
 
-  // type Clear() specifiers; // Override ClearableContainer member
+  virtual void Clear() override; // Override ClearableContainer member
+
+protected:
+  NodeLnk* RecursiveBuild(const NodeLnk*);  
 
 };
 
