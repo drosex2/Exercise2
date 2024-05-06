@@ -511,10 +511,16 @@ public:
   /* ************************************************************************ */
 
   // Copy assignment
-  BTPostOrderMutableIterator<Data>& operator=(const BTPostOrderMutableIterator<Data>&);
+  BTPostOrderMutableIterator<Data>& operator=(const BTPostOrderMutableIterator<Data>& iterator){
+    BTPostOrderIterator<Data>::operator=(iterator);
+    return *this;
+  };
 
   // Move assignment
-  BTPostOrderMutableIterator<Data>& operator=(BTPostOrderMutableIterator<Data>&&) noexcept;
+  BTPostOrderMutableIterator<Data>& operator=(BTPostOrderMutableIterator<Data>&& iterator) noexcept{
+    BTPostOrderIterator<Data>::operator=(std::move(iterator));
+    return *this;
+  };
 
   /* ************************************************************************ */
 

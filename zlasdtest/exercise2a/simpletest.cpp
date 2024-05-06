@@ -130,8 +130,8 @@ void stestBinaryTreeFloat(lasd::MutableBinaryTree<double> & bt, uint & testnum, 
     //TraverseInOrder(loctestnum, loctesterr, bt, true, &TraversePrint<double>);
 
     lasd::BTInOrderIterator<double> itr3(bt); 
-    //GetItrValue(loctestnum, loctesterr, itr3, true, 2.1);
-    //++itr3;
+    GetItrValue(loctestnum, loctesterr, itr3, true, 2.1);
+    ++itr3;
     GetItrValue(loctestnum, loctesterr, itr3, true, 0.3);
     ++itr3;
     GetItrValue(loctestnum, loctesterr, itr3, true, 1.2);
@@ -147,23 +147,24 @@ void stestBinaryTreeFloat(lasd::MutableBinaryTree<double> & bt, uint & testnum, 
     lasd::BTInOrderIterator<double> newitr3(move(itr3));
     itr3.Reset();
 
-//     lasd::BTPostOrderIterator<double> itr4(bt);
-//     GetItrValue(loctestnum, loctesterr, itr4, true, 2.1);
-//     ++itr4;
-//     GetItrValue(loctestnum, loctesterr, itr4, true, 0.3);
-//     ++itr4;
-//     GetItrValue(loctestnum, loctesterr, itr4, true, 3.0);
-//     ++itr4;
-//     GetItrValue(loctestnum, loctesterr, itr4, true, 1.2);
-//     ++itr4;
-//     Terminated(loctestnum, loctesterr, itr4, true);
-//     itr4.Reset();
-//     Terminated(loctestnum, loctesterr, itr4, false);
-//     ++itr4;
-//     GetItrValue(loctestnum, loctesterr, itr4, true, 0.3);
-//     itr4.Reset();
-//     lasd::BTPostOrderIterator<double> newitr4(move(itr4));
-//     itr4.Reset();
+    lasd::BTPostOrderIterator<double> itr4(bt);
+    TraversePostOrder(loctestnum, loctesterr, bt, true, &TraversePrint<double>);
+    GetItrValue(loctestnum, loctesterr, itr4, true, 2.1);
+    ++itr4;
+    GetItrValue(loctestnum, loctesterr, itr4, true, 0.3);
+    ++itr4;
+    GetItrValue(loctestnum, loctesterr, itr4, true, 3.0);
+    ++itr4;
+    GetItrValue(loctestnum, loctesterr, itr4, true, 1.2);
+    ++itr4;
+    Terminated(loctestnum, loctesterr, itr4, true);
+    itr4.Reset();
+    Terminated(loctestnum, loctesterr, itr4, false);
+    ++itr4;
+    GetItrValue(loctestnum, loctesterr, itr4, true, 0.3);
+    itr4.Reset();
+    lasd::BTPostOrderIterator<double> newitr4(move(itr4));
+    itr4.Reset();
   }
   catch (...) {
     loctestnum++; loctesterr++;
