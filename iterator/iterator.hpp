@@ -133,7 +133,7 @@ public:
 /* ************************************************************************** */
 
 template <typename Data>
-class ResettableIterator : Iterator<Data> {
+class ResettableIterator : virtual public Iterator<Data> {
   // Must extend Iterator<Data>
 
 private:

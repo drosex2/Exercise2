@@ -87,62 +87,65 @@ void stestBinaryTreeInt(uint & testnum, uint & testerr) {
   testerr += loctesterr;
 }
 
-// void stestBinaryTreeFloat(lasd::MutableBinaryTree<double> & bt, uint & testnum, uint & testerr) {
-//   uint loctestnum = 0, loctesterr = 0;
-//   try {
-//     lasd::BTPreOrderIterator<double> itr1(bt);
-//     GetItrValue(loctestnum, loctesterr, itr1, true, 1.2);
-//     ++itr1;
-//     GetItrValue(loctestnum, loctesterr, itr1, true, 0.3);
-//     ++itr1;
-//     GetItrValue(loctestnum, loctesterr, itr1, true, 2.1);
-//     ++itr1;
-//     GetItrValue(loctestnum, loctesterr, itr1, true, 3.0);
-//     ++itr1;
-//     Terminated(loctestnum, loctesterr, itr1, true);
-//     itr1.Reset();
-//     Terminated(loctestnum, loctesterr, itr1, false);
-//     ++itr1;
-//     GetItrValue(loctestnum, loctesterr, itr1, true, 0.3);
-//     itr1.Reset();
-//     lasd::BTPreOrderIterator<double> newitr1(move(itr1));
-//     itr1.Reset();
+void stestBinaryTreeFloat(lasd::MutableBinaryTree<double> & bt, uint & testnum, uint & testerr) {
+  uint loctestnum = 0, loctesterr = 0;
+  try {
+    lasd::BTPreOrderIterator<double> itr1(bt);
+    //Traverse(loctestnum, loctesterr, bt, true, &TraversePrint<double>);
+    GetItrValue(loctestnum, loctesterr, itr1, true, 1.2);
+    ++itr1;
+    GetItrValue(loctestnum, loctesterr, itr1, true, 0.3);
+    ++itr1;
+    GetItrValue(loctestnum, loctesterr, itr1, true, 2.1);
+    ++itr1;
+    GetItrValue(loctestnum, loctesterr, itr1, true, 3.0);
+    ++itr1;
+    Terminated(loctestnum, loctesterr, itr1, true);
+    itr1.Reset();
+    Terminated(loctestnum, loctesterr, itr1, false);
+    ++itr1;
+    GetItrValue(loctestnum, loctesterr, itr1, true, 0.3);
+    itr1.Reset();
+    lasd::BTPreOrderIterator<double> newitr1(move(itr1));
+    itr1.Reset();
 
-//     lasd::BTBreadthIterator<double> itr2(bt);
-//     GetItrValue(loctestnum, loctesterr, itr2, true, 1.2);
-//     ++itr2;
-//     GetItrValue(loctestnum, loctesterr, itr2, true, 0.3);
-//     ++itr2;
-//     GetItrValue(loctestnum, loctesterr, itr2, true, 3.0);
-//     ++itr2;
-//     GetItrValue(loctestnum, loctesterr, itr2, true, 2.1);
-//     ++itr2;
-//     Terminated(loctestnum, loctesterr, itr2, true);
-//     itr2.Reset();
-//     Terminated(loctestnum, loctesterr, itr2, false);
-//     ++itr2;
-//     GetItrValue(loctestnum, loctesterr, itr2, true, 0.3);
-//     itr2.Reset();
-//     lasd::BTBreadthIterator<double> newitr2(move(itr2));
-//     itr2.Reset();
+    lasd::BTBreadthIterator<double> itr2(bt);
+    GetItrValue(loctestnum, loctesterr, itr2, true, 1.2);
+    ++itr2;
+    GetItrValue(loctestnum, loctesterr, itr2, true, 0.3);
+    ++itr2;
+    GetItrValue(loctestnum, loctesterr, itr2, true, 3.0);
+    ++itr2;
+    GetItrValue(loctestnum, loctesterr, itr2, true, 2.1);
+    ++itr2;
+    Terminated(loctestnum, loctesterr, itr2, true);
+    itr2.Reset();
+    Terminated(loctestnum, loctesterr, itr2, false);
+    ++itr2;
+    GetItrValue(loctestnum, loctesterr, itr2, true, 0.3);
+    itr2.Reset();
+    lasd::BTBreadthIterator<double> newitr2(move(itr2));
+    itr2.Reset();
 
-//     lasd::BTInOrderIterator<double> itr3(bt);
-//     GetItrValue(loctestnum, loctesterr, itr3, true, 2.1);
-//     ++itr3;
-//     GetItrValue(loctestnum, loctesterr, itr3, true, 0.3);
-//     ++itr3;
-//     GetItrValue(loctestnum, loctesterr, itr3, true, 1.2);
-//     ++itr3;
-//     GetItrValue(loctestnum, loctesterr, itr3, true, 3.0);
-//     ++itr3;
-//     Terminated(loctestnum, loctesterr, itr3, true);
-//     itr3.Reset();
-//     Terminated(loctestnum, loctesterr, itr3, false);
-//     ++itr3;
-//     GetItrValue(loctestnum, loctesterr, itr3, true, 0.3);
-//     itr3.Reset();
-//     lasd::BTInOrderIterator<double> newitr3(move(itr3));
-//     itr3.Reset();
+    //TraverseInOrder(loctestnum, loctesterr, bt, true, &TraversePrint<double>);
+
+    lasd::BTInOrderIterator<double> itr3(bt); 
+    //GetItrValue(loctestnum, loctesterr, itr3, true, 2.1);
+    //++itr3;
+    GetItrValue(loctestnum, loctesterr, itr3, true, 0.3);
+    ++itr3;
+    GetItrValue(loctestnum, loctesterr, itr3, true, 1.2);
+    ++itr3;
+    GetItrValue(loctestnum, loctesterr, itr3, true, 3.0);
+    ++itr3;
+    Terminated(loctestnum, loctesterr, itr3, true);
+    itr3.Reset();
+    Terminated(loctestnum, loctesterr, itr3, false);
+    ++itr3;
+    GetItrValue(loctestnum, loctesterr, itr3, true, 0.3);
+    itr3.Reset();
+    lasd::BTInOrderIterator<double> newitr3(move(itr3));
+    itr3.Reset();
 
 //     lasd::BTPostOrderIterator<double> itr4(bt);
 //     GetItrValue(loctestnum, loctesterr, itr4, true, 2.1);
@@ -161,15 +164,15 @@ void stestBinaryTreeInt(uint & testnum, uint & testerr) {
 //     itr4.Reset();
 //     lasd::BTPostOrderIterator<double> newitr4(move(itr4));
 //     itr4.Reset();
-//   }
-//   catch (...) {
-//     loctestnum++; loctesterr++;
-//     cout << endl << "Unmanaged error! " << endl;
-//   }
-//   cout << "End of BinaryTree<double> Test! (Errors/Tests: " << loctesterr << "/" << loctestnum << ")" << endl;
-//   testnum += loctestnum;
-//   testerr += loctesterr;
-// }
+  }
+  catch (...) {
+    loctestnum++; loctesterr++;
+    cout << endl << "Unmanaged error! " << endl;
+  }
+  cout << "End of BinaryTree<double> Test! (Errors/Tests: " << loctesterr << "/" << loctestnum << ")" << endl;
+  testnum += loctestnum;
+  testerr += loctesterr;
+}
 
 void stestBinaryTreeFloat(uint & testnum, uint & testerr) {
   uint loctestnum = 0, loctesterr = 0;
@@ -186,7 +189,7 @@ void stestBinaryTreeFloat(uint & testnum, uint & testerr) {
     // stestBinaryTreeFloat(btvec, loctestnum, loctesterr);
     lasd::BinaryTreeLnk<double> btlnk(lst);
     cout << endl << "Begin of BinaryTreeLnk<double> Test:" << endl;
-    //stestBinaryTreeFloat(btlnk, loctestnum, loctesterr);
+    stestBinaryTreeFloat(btlnk, loctestnum, loctesterr);
     cout << "\n";
 
     // lasd::BinaryTreeVec<double> copbtvec(move(btvec));

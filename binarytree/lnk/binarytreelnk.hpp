@@ -63,7 +63,7 @@ protected:
 
   };
 
-  NodeLnk *root=nullptr;
+  NodeLnk * root=nullptr;
 public:
 
   // Default constructor

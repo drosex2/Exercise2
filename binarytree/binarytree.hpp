@@ -285,7 +285,8 @@ private:
 protected:
 
   const typename BinaryTree<Data>::Node* root=nullptr;
-  StackLst<typename BinaryTree<Data>::Node*> stack;
+  //const typename BinaryTree<Data>::Node* current=nullptr;
+  StackLst<const typename BinaryTree<Data>:: Node*> stack;
 
 public:
 
@@ -356,6 +357,7 @@ private:
 protected:
   using BTPreOrderIterator<Data>::stack;
   using BTPreOrderIterator<Data>::root;
+  //using BTPreOrderIterator<Data>::current;
   // typename MutableBinaryTree<Data>::MutableNode* root=nullptr;
   // StackLst<typename MutableBinaryTree<Data>::MutableNode*> stack;
 
@@ -414,7 +416,8 @@ private:
 protected:
 
   const typename BinaryTree<Data>::Node* root=nullptr;
-  StackLst<typename BinaryTree<Data>::Node*> stack;
+  StackLst<const typename BinaryTree<Data>::Node*> stack;
+  virtual void LeftMostLeaf(const typename BinaryTree<Data>::Node *);
 
 public:
 
@@ -485,7 +488,8 @@ private:
 protected:
 
   // ...
-
+  using BTPostOrderIterator<Data>::stack;
+  using BTPostOrderIterator<Data>::root;
 public:
 
   // Specific constructors
@@ -541,8 +545,8 @@ private:
 protected:
 
   const typename BinaryTree<Data>::Node* root=nullptr;
-  StackLst<typename BinaryTree<Data>::Node*> stack;
-
+  StackLst<const typename BinaryTree<Data>::Node*> stack;
+  virtual void PushLeftNodes(const typename BinaryTree<Data>::Node *);
 public:
 
   // Specific constructors
@@ -612,7 +616,8 @@ private:
 protected:
 
   // ...
-
+  using BTInOrderIterator<Data>::stack;
+  using BTInOrderIterator<Data>::root;
 public:
 
   // Specific constructors
@@ -634,10 +639,16 @@ public:
   /* ************************************************************************ */
 
   // Copy assignment
-  BTInOrderMutableIterator<Data> operator=(const BTInOrderMutableIterator<Data>&);
+  BTInOrderMutableIterator<Data> operator=(const BTInOrderMutableIterator<Data>& iterator){
+    BTInOrderIterator<Data>::operator=(iterator);
+    return *this;
+  };
 
   // Move assignment
-  BTInOrderMutableIterator<Data> operator=(BTInOrderMutableIterator<Data>&&) noexcept;
+  BTInOrderMutableIterator<Data> operator=(BTInOrderMutableIterator<Data>&& iterator) noexcept{
+    BTInOrderIterator<Data>::operator=(std::move(iterator));
+    return *this;
+  };
 
   /* ************************************************************************ */
 
@@ -668,7 +679,7 @@ private:
 protected:
 
   const typename BinaryTree<Data>::Node* root=nullptr;
-  QueueLst<typename BinaryTree<Data>::Node*> queue;  
+  QueueLst<const typename BinaryTree<Data>::Node*> queue;  
 
 public:
 
@@ -739,7 +750,8 @@ private:
 protected:
 
   // ...
-
+  using BTBreadthIterator<Data>::queue;
+  using BTBreadthIterator<Data>::root;
 public:
 
   // Specific constructors
@@ -761,10 +773,16 @@ public:
   /* ************************************************************************ */
 
   // Copy assignment
-  BTBreadthMutableIterator<Data> operator=(const BTBreadthMutableIterator<Data>&);
+  virtual BTBreadthMutableIterator<Data> operator=(const BTBreadthMutableIterator<Data>& iterator){
+    BTBreadthIterator<Data>::operator=(iterator);
+    return *this;
+  };
 
   // Move assignment
-  BTBreadthMutableIterator<Data> operator=(BTBreadthMutableIterator<Data>&&) noexcept;
+  virtual BTBreadthMutableIterator<Data> operator=(BTBreadthMutableIterator<Data>&& iterator) noexcept{
+    BTBreadthIterator<Data>::operator=(std::move(iterator));
+    return *this;
+  };
 
   /* ************************************************************************ */
 

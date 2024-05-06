@@ -204,8 +204,14 @@ namespace lasd {
     }
 
     template <typename Data>
-    BinaryTreeLnk<Data>::NodeLnk& BinaryTreeLnk<Data>::Root() {
-        return const_cast<NodeLnk&>(const_cast<const BinaryTreeLnk<Data>*>(this)->Root()); 
+    BinaryTreeLnk<Data>::NodeLnk & BinaryTreeLnk<Data>::Root() {
+        // return const_cast<NodeLnk &>(const_cast<const BinaryTreeLnk<Data>*>(this)->Root()); 
+        if (root == nullptr){
+            throw std::out_of_range("L'albero è vuoto!");
+        }
+        else{
+            return *root;
+        }   
     }
 
     template <typename Data>
