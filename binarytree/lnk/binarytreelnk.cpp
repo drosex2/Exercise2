@@ -82,6 +82,7 @@ namespace lasd {
     }
 
     //BINARY TREE LNK
+    //costruttori da traversable e mappable: costruzione per livelli (ampiezza)
     template<typename Data>
     BinaryTreeLnk<Data>::BinaryTreeLnk(const TraversableContainer<Data>& traversableCon) {
         size=traversableCon.size;

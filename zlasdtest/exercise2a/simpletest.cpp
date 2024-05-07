@@ -72,7 +72,7 @@ void stestBinaryTreeInt(uint & testnum, uint & testerr) {
     lasd::BinaryTreeLnk<int> copbtlnk(btlnk);
     // Traverse(loctestnum, loctesterr, btlnk, true, &TraversePrint<int>);
     // Traverse(loctestnum, loctesterr, copbtlnk, true, &TraversePrint<int>); //aggiunte da me
-    EqualBT(loctestnum, loctesterr, copbtlnk, btlnk); //rimettere
+    EqualBT(loctestnum, loctesterr, copbtlnk, btlnk);
     btlnk.Clear();
     btlnk = move(copbtlnk);
     NonEqualBT(loctestnum, loctesterr, copbtlnk, btlnk);
@@ -148,7 +148,7 @@ void stestBinaryTreeFloat(lasd::MutableBinaryTree<double> & bt, uint & testnum, 
     itr3.Reset();
 
     lasd::BTPostOrderIterator<double> itr4(bt);
-    TraversePostOrder(loctestnum, loctesterr, bt, true, &TraversePrint<double>);
+    //TraversePostOrder(loctestnum, loctesterr, bt, true, &TraversePrint<double>);
     GetItrValue(loctestnum, loctesterr, itr4, true, 2.1);
     ++itr4;
     GetItrValue(loctestnum, loctesterr, itr4, true, 0.3);

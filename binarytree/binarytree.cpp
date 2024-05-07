@@ -493,16 +493,19 @@ bool BTPostOrderIterator<Data>::Terminated() const noexcept{
 
 template <typename Data>
 BTPostOrderIterator<Data>& BTPostOrderIterator<Data>::operator++(){
-    const typename BinaryTree<Data>::Node* current= stack.TopNPop();
-    if(current!=nullptr){
-        if(stack.Top()->HasRightChild() && (&stack.Top()->RightChild()!=current)){
+    if(!stack.Empty()){
+        const typename BinaryTree<Data>::Node* current= stack.TopNPop();
+        if(current!=nullptr){
             
-            current=&stack.Top()->RightChild();
-            LeftMostLeaf(current);
-        }
+            if(stack.Top()->HasRightChild() && (&stack.Top()->RightChild()!=current)){
+                
+                current=&stack.Top()->RightChild();
+                LeftMostLeaf(current);
+            }
 
+        }
     }else{
-        //current=nullptr;
+        
         throw std::out_of_range("Iterator is terminated!");
     }
     return *this;
@@ -520,6 +523,9 @@ void BTPostOrderIterator<Data>::LeftMostLeaf(const typename BinaryTree<Data>::No
     stack.Push(curr);
     curr=&(curr->RightChild());
     LeftMostLeaf(curr);
+  }
+  if(!curr->HasLeftChild() && !curr->HasRightChild()){
+    stack.Push(curr);
   }
     
 }
@@ -659,12 +665,12 @@ BTInOrderIterator<Data>& BTInOrderIterator<Data>::operator++(){
         if(current->HasRightChild()){
             
             current=&(current->RightChild());
-            stack.Push(current);
+            
             PushLeftNodes(current);
         }
 
     }else{
-        //current=nullptr;
+        
         throw std::out_of_range("Iterator is terminated!");
     }
     return *this;
@@ -674,10 +680,12 @@ BTInOrderIterator<Data>& BTInOrderIterator<Data>::operator++(){
 
 template <typename Data>
 void BTInOrderIterator<Data>::PushLeftNodes(const typename BinaryTree<Data>::Node* curr){
-  
+    
     if(curr->HasLeftChild()){
       stack.Push(curr);
       PushLeftNodes(&(curr->LeftChild()));
+    }else{
+        stack.Push(curr);
     }
 }
 
