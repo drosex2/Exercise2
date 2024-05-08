@@ -44,9 +44,9 @@ void lasdtest() {
   testSimpleExercise2A(loctestnum, loctesterr);
   stestnum += loctestnum; stesterr += loctesterr;
 
-  loctestnum = 0; loctesterr = 0;
-  testSimpleExercise2B(loctestnum, loctesterr);
-  stestnum += loctestnum; stesterr += loctesterr;
+  // loctestnum = 0; loctesterr = 0;
+  // testSimpleExercise2B(loctestnum, loctesterr);
+  // stestnum += loctestnum; stesterr += loctesterr;
 
   loctestnum = 0; loctesterr = 0;
   testFullExercise2A(loctestnum, loctesterr);

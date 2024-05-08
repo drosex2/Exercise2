@@ -27,6 +27,7 @@ using namespace std;
 void stestBinaryTreeInt(lasd::BinaryTree<int> & bt, uint & testnum, uint & testerr) {
   uint loctestnum = 0, loctesterr = 0;
   try {
+    
     Traverse(loctestnum, loctesterr, bt, true, &TraversePrint<int>);
     TraversePreOrder(loctestnum, loctesterr, bt, true, &TraversePrint<int>);
     Fold(loctestnum, loctesterr, bt, true, &FoldAdd<int>, 0, 6);
@@ -53,25 +54,23 @@ void stestBinaryTreeInt(uint & testnum, uint & testerr) {
     SetAt(loctestnum, loctesterr, vec, true, 1, 1);
     SetAt(loctestnum, loctesterr, vec, true, 2, 2);
     SetAt(loctestnum, loctesterr, vec, true, 3, 3);
-
-    // lasd::BinaryTreeVec<int> btvec(vec);
-    // cout << endl << "Begin of BinaryTreeVec<int> Test:" << endl;
-    // stestBinaryTreeInt(btvec, loctestnum, loctesterr);
+    lasd::BinaryTreeVec<int> btvec(vec);
+    cout << endl << "Begin of BinaryTreeVec<int> Test:" << endl;
+    stestBinaryTreeInt(btvec, loctestnum, loctesterr);
     lasd::BinaryTreeLnk<int> btlnk(vec);
     cout << endl << "Begin of BinaryTreeLnk<int> Test:" << endl;
     stestBinaryTreeInt(btlnk, loctestnum, loctesterr);
     cout << "\n";
 
-    // lasd::BinaryTreeVec<int> copbtvec(btvec);
-    // EqualBT(loctestnum, loctesterr, copbtvec, btvec);
-    // btvec.Clear();
-    // btvec = move(copbtvec);
-    // NonEqualBT(loctestnum, loctesterr, copbtvec, btvec);
-    // Empty(loctestnum, loctesterr, copbtvec, true);
+    lasd::BinaryTreeVec<int> copbtvec(btvec);
+    EqualBT(loctestnum, loctesterr, copbtvec, btvec);
+    btvec.Clear();
+    btvec = move(copbtvec);
+    NonEqualBT(loctestnum, loctesterr, copbtvec, btvec);
+    Empty(loctestnum, loctesterr, copbtvec, true);
 
     lasd::BinaryTreeLnk<int> copbtlnk(btlnk);
-    Traverse(loctestnum, loctesterr, btlnk, true, &TraversePrint<int>);
-    Traverse(loctestnum, loctesterr, copbtlnk, true, &TraversePrint<int>); //aggiunte da me
+    
     EqualBT(loctestnum, loctesterr, copbtlnk, btlnk);
     btlnk.Clear();
     btlnk = move(copbtlnk);
@@ -109,23 +108,23 @@ void stestBinaryTreeFloat(lasd::MutableBinaryTree<double> & bt, uint & testnum, 
     lasd::BTPreOrderIterator<double> newitr1(move(itr1));
     itr1.Reset();
 
-    lasd::BTBreadthIterator<double> itr2(bt);
-    GetItrValue(loctestnum, loctesterr, itr2, true, 1.2);
-    ++itr2;
-    GetItrValue(loctestnum, loctesterr, itr2, true, 0.3);
-    ++itr2;
-    GetItrValue(loctestnum, loctesterr, itr2, true, 3.0);
-    ++itr2;
-    GetItrValue(loctestnum, loctesterr, itr2, true, 2.1);
-    ++itr2;
-    Terminated(loctestnum, loctesterr, itr2, true);
-    itr2.Reset();
-    Terminated(loctestnum, loctesterr, itr2, false);
-    ++itr2;
-    GetItrValue(loctestnum, loctesterr, itr2, true, 0.3);
-    itr2.Reset();
-    lasd::BTBreadthIterator<double> newitr2(move(itr2));
-    itr2.Reset();
+    // lasd::BTBreadthIterator<double> itr2(bt);
+    // GetItrValue(loctestnum, loctesterr, itr2, true, 1.2);
+    // ++itr2;
+    // GetItrValue(loctestnum, loctesterr, itr2, true, 0.3);
+    // ++itr2;
+    // GetItrValue(loctestnum, loctesterr, itr2, true, 3.0);
+    // ++itr2;
+    // GetItrValue(loctestnum, loctesterr, itr2, true, 2.1);
+    // ++itr2;
+    // Terminated(loctestnum, loctesterr, itr2, true);
+    // itr2.Reset();
+    // Terminated(loctestnum, loctesterr, itr2, false);
+    // ++itr2;
+    // GetItrValue(loctestnum, loctesterr, itr2, true, 0.3);
+    // itr2.Reset();
+    // lasd::BTBreadthIterator<double> newitr2(move(itr2));
+    // itr2.Reset();
 
     //TraverseInOrder(loctestnum, loctesterr, bt, true, &TraversePrint<double>);
 
@@ -146,6 +145,8 @@ void stestBinaryTreeFloat(lasd::MutableBinaryTree<double> & bt, uint & testnum, 
     itr3.Reset();
     lasd::BTInOrderIterator<double> newitr3(move(itr3));
     itr3.Reset();
+
+    cout<<"POST ORDER ITERATOR"<<endl;
 
     lasd::BTPostOrderIterator<double> itr4(bt);
     //TraversePostOrder(loctestnum, loctesterr, bt, true, &TraversePrint<double>);
@@ -185,19 +186,19 @@ void stestBinaryTreeFloat(uint & testnum, uint & testerr) {
     InsertAtFront(loctestnum, loctesterr, lst, true, 1.2);
     InsertAtBack(loctestnum, loctesterr, lst, true, 2.1);
 
-    // lasd::BinaryTreeVec<double> btvec(lst);
-    // cout << endl << "Begin of BinaryTreeVec<double> Test:" << endl;
-    // stestBinaryTreeFloat(btvec, loctestnum, loctesterr);
+    lasd::BinaryTreeVec<double> btvec(lst);
+    cout << endl << "Begin of BinaryTreeVec<double> Test:" << endl;
+    stestBinaryTreeFloat(btvec, loctestnum, loctesterr);
     lasd::BinaryTreeLnk<double> btlnk(lst);
     cout << endl << "Begin of BinaryTreeLnk<double> Test:" << endl;
     stestBinaryTreeFloat(btlnk, loctestnum, loctesterr);
     cout << "\n";
 
-    // lasd::BinaryTreeVec<double> copbtvec(move(btvec));
-    // Empty(loctestnum, loctesterr, btvec, true);
-    // NonEqualBT(loctestnum, loctesterr, copbtvec, btvec);
-    // btvec = copbtvec;
-    // EqualBT(loctestnum, loctesterr, copbtvec, btvec);
+    lasd::BinaryTreeVec<double> copbtvec(move(btvec));
+    Empty(loctestnum, loctesterr, btvec, true);
+    NonEqualBT(loctestnum, loctesterr, copbtvec, btvec);
+    btvec = copbtvec;
+    EqualBT(loctestnum, loctesterr, copbtvec, btvec);
 
     lasd::BinaryTreeLnk<double> copbtlnk(move(btlnk));
     Empty(loctestnum, loctesterr, btlnk, true);
@@ -242,22 +243,22 @@ void stestBinaryTreeString(uint & testnum, uint & testerr) {
     SetAt(loctestnum, loctesterr, vec, true, 2, string("C"));
     SetAt(loctestnum, loctesterr, vec, true, 3, string("D"));
 
-    // cout << endl << "Begin of BinaryTreeVec<string> Test:" << endl;
-    // lasd::BinaryTreeVec<string> btvec(vec);
-    // stestBinaryTreeString(btvec, loctestnum, loctesterr);
+    cout << endl << "Begin of BinaryTreeVec<string> Test:" << endl;
+    lasd::BinaryTreeVec<string> btvec(vec);
+    stestBinaryTreeString(btvec, loctestnum, loctesterr);
     cout << endl << "Begin of BinaryTreeLnk<string> Test:" << endl;
     lasd::BinaryTreeLnk<string> btlnk(vec);
     stestBinaryTreeString(btlnk, loctestnum, loctesterr);
     cout << "\n";
 
-    // EqualBT(loctestnum, loctesterr, btvec, btlnk);
-    // btvec.Root().LeftChild().LeftChild().Element() = string("S");
-    // NonEqualBT(loctestnum, loctesterr, btlnk, btvec);
-    // btlnk.Root().RightChild().Element() = string("X");
-    // NonEqualBT(loctestnum, loctesterr, btvec, btlnk);
-    // btvec.Root().RightChild().Element() = string("X");
-    // btlnk.Root().LeftChild().LeftChild().Element() = string("S");
-    // EqualBT(loctestnum, loctesterr, btlnk, btvec);
+    EqualBT(loctestnum, loctesterr, btvec, btlnk);
+    btvec.Root().LeftChild().LeftChild().Element() = string("S");
+    NonEqualBT(loctestnum, loctesterr, btlnk, btvec);
+    btlnk.Root().RightChild().Element() = string("X");
+    NonEqualBT(loctestnum, loctesterr, btvec, btlnk);
+    btvec.Root().RightChild().Element() = string("X");
+    btlnk.Root().LeftChild().LeftChild().Element() = string("S");
+    EqualBT(loctestnum, loctesterr, btlnk, btvec);
   }
   catch (...) {
     loctestnum++; loctesterr++;

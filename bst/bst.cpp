@@ -459,20 +459,16 @@ namespace lasd
     {
         const NodeLnk *const *successor = nullptr;
         const NodeLnk *const *curr = &node;
-        while (*curr != nullptr)
-        {
-            if (data >= (*curr)->element)
-            {
+        while (*curr != nullptr){
+            if (data >= (*curr)->element){
                 curr = &((*curr)->right);
             }
-            else
-            {
+            else{
                 successor = curr;
                 curr = &((*curr)->left);
             }
         }
-        if (successor == nullptr)
-        {
+        if (successor == nullptr){
             return *curr;
         }
 
@@ -490,24 +486,19 @@ namespace lasd
     {
         const NodeLnk *const *predecessor = nullptr;
         const NodeLnk *const *curr = &node;
-        while (*curr != nullptr)
-        {
-            if (data > (*curr)->element)
-            {
+        while (*curr != nullptr){
+            if (data > (*curr)->element){
                 predecessor = curr;
                 curr = &((*curr)->right);
             }
-            else
-            {
+            else{
                 curr = &((*curr)->left);
             }
         }
-        if (predecessor == nullptr)
-        {
+        if (predecessor == nullptr){
             return *curr;
         }
-        else
-        {
+        else{
             return *predecessor;
         }
     }
