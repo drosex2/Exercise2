@@ -70,8 +70,8 @@ void stestBinaryTreeInt(uint & testnum, uint & testerr) {
     // Empty(loctestnum, loctesterr, copbtvec, true);
 
     lasd::BinaryTreeLnk<int> copbtlnk(btlnk);
-    // Traverse(loctestnum, loctesterr, btlnk, true, &TraversePrint<int>);
-    // Traverse(loctestnum, loctesterr, copbtlnk, true, &TraversePrint<int>); //aggiunte da me
+    Traverse(loctestnum, loctesterr, btlnk, true, &TraversePrint<int>);
+    Traverse(loctestnum, loctesterr, copbtlnk, true, &TraversePrint<int>); //aggiunte da me
     EqualBT(loctestnum, loctesterr, copbtlnk, btlnk);
     btlnk.Clear();
     btlnk = move(copbtlnk);

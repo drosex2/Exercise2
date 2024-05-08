@@ -37,16 +37,23 @@ protected:
   protected:
 
     friend class BinaryTreeLnk<Data>;
+    
+
+    
+
+  public:
     Data element;
     NodeLnk* left=nullptr;
     NodeLnk* right=nullptr;
 
-    NodeLnk(const Data& data) : element(data){};
-    NodeLnk(Data&&) noexcept;
 
-  public:
     NodeLnk()=default;
+
     ~NodeLnk();
+
+    NodeLnk(const Data& data) : element(data){};
+    
+    NodeLnk(Data&&) noexcept;
 
     virtual Data& Element() noexcept;
     virtual const Data& Element() const noexcept;
