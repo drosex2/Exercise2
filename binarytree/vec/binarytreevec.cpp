@@ -89,11 +89,12 @@ BinaryTreeVec<Data>::BinaryTreeVec(const TraversableContainer<Data>& traversable
             index++;
         }
     );
+    size=traversableCon.Size();
 }
 
 template <typename Data>
 BinaryTreeVec<Data>::BinaryTreeVec(MappableContainer<Data>&& mappableCon){
-    //vector.Resize(mappableCon.Size());
+    vector.Resize(mappableCon.Size());
     unsigned long index=0;
     mappableCon.Map(
         [this,&index](Data & data){
@@ -104,6 +105,7 @@ BinaryTreeVec<Data>::BinaryTreeVec(MappableContainer<Data>&& mappableCon){
                 index++;
         }
     );
+    size=traversableCon.Size();
 }
 
 template <typename Data>
