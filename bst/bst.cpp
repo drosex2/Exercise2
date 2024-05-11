@@ -326,9 +326,9 @@ namespace lasd
             }
             else
             {
-                NodeLnk* max = DetachMax(node->left);
-                std::swap(node->element, max->element);
-                return max;
+                NodeLnk* min = DetachMin(node->right);
+                std::swap(node->element, min->element);
+                return min;
             }
         }
         return nullptr;

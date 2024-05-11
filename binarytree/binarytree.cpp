@@ -5,32 +5,23 @@ namespace lasd {
 //NODE
 template <typename Data>
 bool BinaryTree<Data>::Node::operator==(const Node& node) const noexcept{
-    bool val=true;
+    bool sx=true,dx=true;
     
-    if(Element()==node.Element()){
-        if(HasLeftChild() && node.HasLeftChild()){
-
-            val=(LeftChild()==node.LeftChild());
-
-        }else if(HasLeftChild()||node.HasLeftChild()){
-
-            val=false;
-        }
-        if(val==true){
-
-            if(HasRightChild()&& node.HasRightChild()){
-
-                val=(RightChild()==node.RightChild());
-
-            }else if(HasRightChild()||node.HasLeftChild()){
-
-                val=false;
-            }
+    if(Element()==node.Element()){ // verifico l'uguaglianza di element
+        if(HasLeftChild() && node.HasLeftChild()){ //se entrambi hanno un figlio sinistro verifico che entrambi i figli sinistri siano uguali
+            sx=(LeftChild()==node.LeftChild());
+        }else if(!HasLeftChild()||!node.HasLeftChild()){ //altrimenti se solo uno dei due  ha figlio sinistro allora falso
+            sx=false;
+        } 
+        if(HasRightChild()&& node.HasRightChild()){ //stesso ragionamento
+                dx=(RightChild()==node.RightChild());
+        }else if(!HasRightChild()||!node.HasLeftChild()){
+                dx=false;
         }
     }else{
-        val=false;
+        return false;
     }
-    return val;
+    return (sx && dx);
 }
 
 template <typename Data>
@@ -48,20 +39,14 @@ bool BinaryTree<Data>::Node::IsLeaf() const noexcept{
 
 template <typename Data>
 bool BinaryTree<Data>::operator==(const BinaryTree<Data>& binTree) const noexcept{
-    if(!(this->Empty())&& !(binTree.Empty())){
-
-        if(size==binTree.size)
-        {
-            return Root()==binTree.Root();
-        }else{
-            return false;
-        }
-    }
-    if((this->Empty()) && (binTree.Empty())){
-        return true;
+    
+    if(size==binTree.size)
+    {
+        return Root()==binTree.Root();
     }else{
         return false;
     }
+    
 }
 
 
@@ -321,6 +306,8 @@ BTPreOrderIterator<Data>& BTPreOrderIterator<Data>::operator++(){
                 stack.Push(&(current->RightChild()));
             }
         }
+    }else{
+        throw std::out_of_range("The iterator is terminated!");
     }
     return *this;
 }
@@ -464,23 +451,28 @@ bool BTPostOrderIterator<Data>::Terminated() const noexcept{
 
 template <typename Data>
 BTPostOrderIterator<Data>& BTPostOrderIterator<Data>::operator++(){
+    
     const typename BinaryTree<Data>::Node *current = stack.TopNPop();  
-    if (!Terminated()){
+    if(!Terminated()){
         if (stack.Top()->HasRightChild() && (&stack.Top()->RightChild() != current)){
             current = &stack.Top()->RightChild();
             LeftMostLeaf(current);
         }
-    } 
-        
+    }
+    else{
+        //throw std::out_of_range("Iterator is terminated!");
+    }      
     return *this;
 }
 
 
 template <typename Data>
 void BTPostOrderIterator<Data>::LeftMostLeaf(const typename BinaryTree<Data>::Node* curr){
+  
   while(curr->HasLeftChild()){
     stack.Push(curr);
     curr=&(curr->LeftChild());
+    //LeftMostLeaf(curr);
   }
   if(curr->HasRightChild()){
     stack.Push(curr);
@@ -488,9 +480,10 @@ void BTPostOrderIterator<Data>::LeftMostLeaf(const typename BinaryTree<Data>::No
     LeftMostLeaf(curr);
   }
   if(!curr->HasLeftChild() && !curr->HasRightChild()){
-    stack.Push(curr);
-  }
+        stack.Push(curr);
+    }
     
+      
 }
 
 template <typename Data>
@@ -623,16 +616,17 @@ bool BTInOrderIterator<Data>::Terminated() const noexcept{
 
 template <typename Data>
 BTInOrderIterator<Data>& BTInOrderIterator<Data>::operator++(){
-    if(!Terminated()){
-        const typename BinaryTree<Data>::Node* current= stack.TopNPop();
-        if(current!=nullptr){
-            if(current->HasRightChild()){
+    
+    const typename BinaryTree<Data>::Node* current= stack.TopNPop();
+    if(current!=nullptr){
+        if(current->HasRightChild()){
                 
-                current=&(current->RightChild());
-                
-                PushLeftNodes(current);
-            }
+            current=&(current->RightChild());
+            PushLeftNodes(current);
         }
+    }
+    else{
+        throw std::out_of_range("The iterator is terminated!");
     }
     return *this;
 
@@ -770,12 +764,17 @@ bool BTBreadthIterator<Data>::Terminated() const noexcept{
 
 template <typename Data>
 BTBreadthIterator<Data>& BTBreadthIterator<Data>::operator++(){
-    const typename BinaryTree<Data>::Node & current= *(queue.HeadNDequeue());
-    if(current.HasLeftChild()){
-        queue.Enqueue(&current.LeftChild());
-    }
-    if(current.HasRightChild()){
-        queue.Enqueue(&current.RightChild());
+    if(!Terminated()){
+        const typename BinaryTree<Data>::Node & current= *(queue.HeadNDequeue());
+        if(current.HasLeftChild()){
+            queue.Enqueue(&current.LeftChild());
+        }
+        if(current.HasRightChild()){
+            queue.Enqueue(&current.RightChild());
+        }
+    
+    }else{
+        throw std::out_of_range("The iterator is terminated!");
     }
     return *this;
 }

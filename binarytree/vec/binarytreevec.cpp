@@ -105,7 +105,7 @@ BinaryTreeVec<Data>::BinaryTreeVec(MappableContainer<Data>&& mappableCon){
                 index++;
         }
     );
-    size=traversableCon.Size();
+    size=mappableCon.Size();
 }
 
 template <typename Data>

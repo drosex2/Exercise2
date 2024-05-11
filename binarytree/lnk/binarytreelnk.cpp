@@ -118,7 +118,7 @@ namespace lasd {
     template<typename Data>
     BinaryTreeLnk<Data>::BinaryTreeLnk(const BinaryTreeLnk<Data>& copTree){
         
-        size=copTree.Size();
+        //size=copTree.Size();
         root=RecursiveBuild(&copTree.Root());
                      
         
@@ -130,11 +130,12 @@ namespace lasd {
         NodeLnk* tmp=new NodeLnk();
         if(root!=nullptr){
             tmp->element= root->Element();
+            size++;
             if(root->HasLeftChild()){
-                tmp->left= RecursiveBuild(root->left);
+                tmp->left= RecursiveBuild(&root->LeftChild());
             }
             if(root->HasRightChild()){
-                tmp->right=RecursiveBuild(root->right);
+                tmp->right=RecursiveBuild(&root->RightChild());
             }
         }
         
@@ -185,11 +186,7 @@ namespace lasd {
 
     template <typename Data>
     bool BinaryTreeLnk<Data>::operator==(const BinaryTreeLnk<Data>& cmpTree)const noexcept{
-        if(size==cmpTree.size){
-            return Root()==cmpTree.Root();
-        }else{
-            return false;
-        }
+        return BinaryTree<Data>::operator==(cmpTree);
         
     }
 
