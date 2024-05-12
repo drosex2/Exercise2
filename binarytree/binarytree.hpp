@@ -364,7 +364,7 @@ protected:
 public:
 
   // Specific constructors
-  BTPreOrderMutableIterator(const MutableBinaryTree<Data>&); // An iterator over a given mutable binary tree
+  BTPreOrderMutableIterator(MutableBinaryTree<Data>&); // An iterator over a given mutable binary tree
 
   /* ************************************************************************ */
 
@@ -493,7 +493,7 @@ protected:
 public:
 
   // Specific constructors
-  BTPostOrderMutableIterator(const MutableBinaryTree<Data>&); // An iterator over a given mutable binary tree
+  BTPostOrderMutableIterator(MutableBinaryTree<Data>&); // An iterator over a given mutable binary tree
 
   /* ************************************************************************ */
 
@@ -627,7 +627,7 @@ protected:
 public:
 
   // Specific constructors
-  BTInOrderMutableIterator(const MutableBinaryTree<Data>&); // An iterator over a given mutable binary tree
+  BTInOrderMutableIterator(MutableBinaryTree<Data>&); // An iterator over a given mutable binary tree
 
   /* ************************************************************************ */
 
@@ -761,7 +761,7 @@ protected:
 public:
 
   // Specific constructors
-  BTBreadthMutableIterator(const MutableBinaryTree<Data>&); // An iterator over a given mutable binary tree
+  BTBreadthMutableIterator(MutableBinaryTree<Data>&); // An iterator over a given mutable binary tree
 
   /* ************************************************************************ */
 

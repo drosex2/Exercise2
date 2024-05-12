@@ -7,6 +7,7 @@
 #include "tests/queue.hpp"
 #include "tests/stack.hpp"
 #include "tests/binarytree.hpp"
+#include "tests/bst.hpp"
 #include "../container/container.hpp"
 #include "../container/mappable.hpp"
 
@@ -44,5 +45,7 @@ void mytest() {
     // queueLstString();
     cout << "--------------TEST BINARYTREE--------------" << endl;
     testBinaryTree();
+    cout << "--------------TEST BINARY SEARCH TREE--------------" << endl;
+    testBinarySearchTree();
     cout<<"END OF MY TEST! GOODBYE!"<<endl;
 }
