@@ -3,6 +3,7 @@
 #include "../../binarytree/binarytree.hpp"
 #include "../../binarytree/lnk/binarytreelnk.hpp"
 #include "../../binarytree/vec/binarytreevec.hpp"
+#include "../../list/list.hpp"
 #include "../../bst/bst.hpp"
 #include "../../container/container.hpp"
 #include "../../container/mappable.hpp"
@@ -13,7 +14,7 @@
 #include <random>
 
 using namespace std;
-
+using namespace miotest;
 
 namespace miotest{
 
@@ -115,6 +116,54 @@ namespace miotest{
             bst2.Clear();
             cout<<endl<<"Dimensione di bst2 dopo la clear: "<<bst2.Size()<<endl;
             cout<<endl;
+
+            lasd::List<int> list;
+            for (unsigned long i = 0; i <= 10; i++)
+            {
+                list.Insert(dist(gen));
+            }
+            cout<<"Insert All da list: ";
+            cout << ((bst2.InsertAll(list)) ? "Sono stati inseriti tutti i valori presenti in list" : "Non sono stati inseriti tutti i valori presenti in list") << "!" << endl;
+            lasd::BTInOrderIterator<int> itr5(bst2);
+            while(!itr5.Terminated()){
+                cout<<itr5.operator*()<<" ";
+                ++itr5;
+            }
+
+            list.Clear();
+            for (unsigned long i = 0; i <= 100; i++)
+            {
+                list.Insert(dist(gen));
+            }
+            cout<<endl<<"Remove Some da list: ";
+            cout << ((bst2.RemoveSome(list)) ? "E' stato rimosso da bst almeno un valore presente in list" : "Non e' stato rimosso nessun valore") << "!" << endl;
+            itr5.Reset();
+            while(!itr5.Terminated()){
+                cout<<itr5.operator*()<<" ";
+                ++itr5;
+            }
+
+            list.Clear();
+            for (unsigned long i = 0; i <= 10; i++)
+            {
+                list.Insert(dist(gen));
+            }
+            cout<<endl<<"Insert Some da list: ";
+            cout << ((bst2.InsertSome(list)) ? "E' stato inserito in bst almeno un valore in list" : "Non e' stato inserito nessun valore presente in list") << "!" << endl;
+            itr5.Reset();
+            while(!itr5.Terminated()){
+                cout<<itr5.operator*()<<" ";
+                ++itr5;
+            }
+            cout<<endl<<"Remove All da list: ";
+            cout << ((bst2.RemoveAll(list)) ? "Sono stati rimossi da bst tutti i valori presenti in list" : "Non sono stati rimossi da bst tutti i valori presenti in list") << "!" << endl;
+            itr5.Reset();
+            while(!itr5.Terminated()){
+                cout<<itr5.operator*()<<" ";
+                ++itr5;
+            }
+            cout<<endl;
+            
 
         }catch(exception& exc){
             cout<<exc.what()<<endl;

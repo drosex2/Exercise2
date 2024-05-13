@@ -1,9 +1,8 @@
 #ifndef TESTCONTAINER_HPP
 #define TESTCONTAINER_HPP
 
-
-
-template <typename Data>
+namespace miotest{
+  template <typename Data>
 void MapPreOrder(lasd::PreOrderMappableContainer<Data> & con, typename lasd::MappableContainer<Data>::MapFun fun) {
   try {
     con.PreOrderMap(fun);
@@ -72,4 +71,7 @@ void FoldPreOrder( const lasd::PreOrderTraversableContainer<Data> & con, typenam
   }
   
 }
+}
+
+
 #endif

@@ -3,6 +3,13 @@ namespace lasd
 {
     
     /* ************************************************************************** */
+    //default constructor
+    template <typename Data>
+    BST<Data>::BST(){
+        root=nullptr;
+        size=0;
+    }    
+
     // constructor from traversable container
     template <typename Data>
     BST<Data>::BST(const TraversableContainer<Data> &traversableCon)

@@ -10,6 +10,7 @@
 #include "../container.hpp"
 #include <random>
 using namespace std;
+using namespace miotest;
 
 void vectorInt()
 {

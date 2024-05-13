@@ -13,8 +13,7 @@ namespace lasd {
 /* ************************************************************************** */
 
 template <typename Data>
-class BST:  //virtual public ClearableContainer,
-            virtual public DictionaryContainer<Data>,
+class BST:  virtual public DictionaryContainer<Data>,
             virtual public BinaryTree<Data>,
             virtual protected BinaryTreeLnk<Data>{
   // Must extend ClearableContainer,
@@ -31,13 +30,14 @@ protected:
   using typename BinaryTreeLnk<Data>::NodeLnk;
   using BinaryTreeLnk<Data>::size;
   using BinaryTreeLnk<Data>::root;
+  
 
   // ...
 
 public:
 
   // Default constructor
-  BST()=default;
+  BST();
 
   /* ************************************************************************ */
 
@@ -117,7 +117,7 @@ public:
   // Specific member function (inherited from ClearableContainer)
 
   using BinaryTreeLnk<Data>::Clear; // Override ClearableContainer member
-
+  
 protected:
   
   // Auxiliary functions, if necessary!

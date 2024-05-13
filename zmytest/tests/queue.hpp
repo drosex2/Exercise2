@@ -13,7 +13,7 @@
 #include <random>
 #include <string>
 using namespace std;
-
+using namespace miotest;
 void queueVecInt(){
     cout<<"--------------TEST QUEUEVEC INT--------------"<<endl;
     unsigned long size;

@@ -11,7 +11,7 @@
 #include "../container.hpp"
 #include <random>
 using namespace std;
-
+using namespace miotest;
 void stackVecInt()
 {
     cout << "--------------TEST STACKVEC INT--------------" << endl;

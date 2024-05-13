@@ -10,6 +10,7 @@
 #include "../container.hpp"
 #include <iostream>
 using namespace std;
+using namespace miotest;
 namespace miotest{
 
     void testBinaryTree()
@@ -62,14 +63,14 @@ namespace miotest{
             cout<<endl<<"btvec pt2"<<endl;
             MapBreadth(btvec, &MapPrint<string>);
             cout<<endl<<" breadth iterator"<<endl;
-            lasd::BTBreadthIterator<string> itr1(btlnk);
+            lasd::BTBreadthMutableIterator<string> itr1(btlnk);
             while(!itr1.Terminated()){
                 cout<<itr1.operator*()<<" ";
                 ++itr1;
             }
 
             cout<<endl<<" post order iterator"<<endl;
-            lasd::BTPostOrderIterator<string> itr2(btlnk);
+            lasd::BTPostOrderMutableIterator<string> itr2(btlnk);
             // while(!itr2.Terminated()){
             //     cout<<itr2.operator*()<<" ";
             //     ++itr2;
@@ -92,6 +93,8 @@ namespace miotest{
             lasd::BTPreOrderMutableIterator<string> itr6(move(itr3));
             itr6.Reset();
             cout<<"Pre Order Mutable Iterator creato con una move(primo elemento dopo il reset):"<<endl<<itr6.operator*()<<endl;
+
+            cout << ((itr5==itr4) ? "I due iteratori sono uguali" : "I due iteratori sono diversi") << "!" << endl;
         }
         catch (exception &exc)
         {
