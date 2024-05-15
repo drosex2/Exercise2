@@ -142,7 +142,7 @@ public:
 protected:
 
   // Auxiliary functions, if necessary!
-  //bool logicEqual(const Node&,const Node&) noexcept;
+  
 
   void PreOrderTraverse(TraverseFun,const Node&) const;
   void InOrderTraverse(TraverseFun,const Node&) const;

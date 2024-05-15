@@ -102,10 +102,10 @@ namespace miotest{
             }
              cout<<endl<<"Post Order Iterator: "<<endl;
             lasd::BTPostOrderIterator<int> itr3(bst2);
-            // while(!itr3.Terminated()){
-            //     cout<<itr3.operator*()<<" ";
-            //     ++itr3;
-            // }
+            while(!itr3.Terminated()){
+                cout<<itr3.operator*()<<" ";
+                ++itr3;
+            }
             cout<<endl<<"Breadth Iterator: "<<endl;
             lasd::BTBreadthIterator<int> itr4(bst2);
             while(!itr4.Terminated()){
@@ -163,6 +163,13 @@ namespace miotest{
                 ++itr5;
             }
             cout<<endl;
+
+            lasd::BST<int> bst4;
+            bst4=bst2;
+            lasd::BST<int>bst5;
+            bst5=move(bst2);
+            cout << ((bst4==bst5) ? "I due alberi bst sono uguali" : "I due alberi bst sono diversi") << "!" << endl;
+            cout << ((bst2==bst5) ? "I due alberi bst sono uguali" : "I due alberi bst sono diversi") << "!" << endl;
             
 
         }catch(exception& exc){

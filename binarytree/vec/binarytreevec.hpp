@@ -38,7 +38,7 @@ protected:
 
   public:
     Data element;
-    //bool flag=false;
+    
     unsigned long index;
     Vector<NodeVec*> *tree;
     
@@ -66,7 +66,6 @@ protected:
   Vector<NodeVec*> vector;
 public:
   using Container::size;
-  // using Vector<Data>::Elements;
   // using typename BinaryTree<Data>::Node;
   // using typename MutableBinaryTree<Data>::MutableNode;
 
@@ -129,7 +128,7 @@ public:
   // Specific member function (inherited from BreadthTraversableContainer)
   //using typename TraversableContainer<Data>::TraverseFun;
   using TraverseFun= std::function<void(const Data &)>;
-  virtual void BreadthTraverse(TraverseFun) const override; // Override BreadthTraversableContainer member
+  virtual void BreadthTraverse(TraverseFun) const override; // Override BreadthTraversableContainer member //implementabile con un semplice ciclo
 
   /* ************************************************************************ */
 

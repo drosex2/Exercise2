@@ -10,13 +10,17 @@ bool BinaryTree<Data>::Node::operator==(const Node& node) const noexcept{
     if(Element()==node.Element()){ // verifico l'uguaglianza di element
         if(HasLeftChild() && node.HasLeftChild()){ //se entrambi hanno un figlio sinistro verifico che entrambi i figli sinistri siano uguali
             sx=(LeftChild()==node.LeftChild());
-        }else if(!HasLeftChild()||!node.HasLeftChild()){ //altrimenti se solo uno dei due  ha figlio sinistro allora falso
+        }else if(HasLeftChild()||node.HasLeftChild()){ //altrimenti se solo uno dei due  ha figlio sinistro allora falso
             sx=false;
+        }else{
+            sx=true;
         } 
         if(HasRightChild()&& node.HasRightChild()){ //stesso ragionamento
-                dx=(RightChild()==node.RightChild());
-        }else if(!HasRightChild()||!node.HasLeftChild()){
-                dx=false;
+            dx=(RightChild()==node.RightChild());
+        }else if(HasRightChild()||node.HasLeftChild()){
+            dx=false;
+        }else{
+            dx=true;
         }
     }else{
         return false;
@@ -39,13 +43,16 @@ bool BinaryTree<Data>::Node::IsLeaf() const noexcept{
 
 template <typename Data>
 bool BinaryTree<Data>::operator==(const BinaryTree<Data>& binTree) const noexcept{
-    
+    if(Empty() && binTree.Empty()){
+        return true;
+    }
     if(size==binTree.size)
     {
         return Root()==binTree.Root();
     }else{
         return false;
     }
+    
     
 }
 
@@ -448,9 +455,7 @@ BTPostOrderIterator<Data>& BTPostOrderIterator<Data>::operator++(){
             LeftMostLeaf(current);
         }
     }
-    else{
-        throw std::out_of_range("Iterator is terminated!");
-    }      
+         
     return *this;
 }
 
