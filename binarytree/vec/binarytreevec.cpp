@@ -127,7 +127,12 @@ BinaryTreeVec<Data>::BinaryTreeVec(BinaryTreeVec<Data>&& binTree)noexcept{
 
 template <typename Data>
 BinaryTreeVec<Data>::~BinaryTreeVec(){
-    Clear();
+    for (unsigned long i = 0; i < vector.Size(); i++)
+        {
+            delete vector[i];
+        }
+    vector.Clear();
+    size = 0;
 }
 template <typename Data>
 BinaryTreeVec<Data>& BinaryTreeVec<Data>::operator=(const BinaryTreeVec<Data>& binTree){
@@ -144,7 +149,7 @@ BinaryTreeVec<Data>& BinaryTreeVec<Data>::operator=(const BinaryTreeVec<Data>& b
 
 template <typename Data>
 BinaryTreeVec<Data>& BinaryTreeVec<Data>::operator=(BinaryTreeVec<Data>&& binTree)noexcept{
-    Clear();
+    
     std::swap(size,binTree.size);
     std::swap(vector,binTree.vector);
     return *this;
@@ -154,12 +159,14 @@ template<typename Data>
 bool BinaryTreeVec<Data>::operator==(const BinaryTreeVec<Data>& binTree)const noexcept{
     bool ret=true;
     if(vector.Size()==binTree.vector.Size()){
-        for(unsigned long i=0;i<vector.Size();i++){
-            if(vector[i]->Element()==binTree.vector[i]->Element() && ret){
+        unsigned long i=0;
+        while(i<vector.Size() && ret){
+            if(vector[i]->Element()==binTree.vector[i]->Element()){
                 ret=true;
             }else{
                 ret=false;
             }
+            i++;
         }
     }else{
         ret=false;
@@ -192,14 +199,13 @@ typename BinaryTreeVec<Data>::NodeVec& BinaryTreeVec<Data>::Root() {
 
 template <typename Data>
 void BinaryTreeVec<Data>::Clear(){
-    if (size > 0)
-    {
-        size = 0;
+    if (size > 0){      
         for (unsigned long i = 0; i < vector.Size(); i++)
         {
             delete vector[i];
         }
         vector.Clear();
+        size = 0;
     }
 }
 

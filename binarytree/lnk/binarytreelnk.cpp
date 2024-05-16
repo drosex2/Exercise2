@@ -183,7 +183,7 @@ namespace lasd {
     BinaryTreeLnk<Data>& BinaryTreeLnk<Data>::operator=(BinaryTreeLnk<Data>&& moveTree) noexcept{
         std::swap(root,moveTree.root);
         std::swap(size,moveTree.size);
-        //moveTree->Clear();
+        
         return *this;
     }
 
